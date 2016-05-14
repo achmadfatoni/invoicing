@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::auth();
+Route::resource('clients', 'ClientsController');
+Route::get('/home', 'HomeController@index');
