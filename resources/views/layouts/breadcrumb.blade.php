@@ -1,9 +1,9 @@
 <ul class="breadcrumb">
     @foreach($breadcrumbs as $breadcrumb)
         @if(isset($breadcrumb['link']))
-            <li class="{{ $breadcrumb['active'] ? 'active' : ''}}"><a href="#">{{ $breadcrumb['title'] }}</a></li>
+            <li class="{{ isset($breadcrumb['active']) ? 'active' : ''}}"><a href="{{ $breadcrumb['link'] }}">{{ $breadcrumb['title'] }}</a></li>
         @else
-            <li class="{{ $breadcrumb['active'] ? 'active' : ''}}">{{ $breadcrumb['title'] }}</li>
+            <li class="{{ isset($breadcrumb['active']) ? 'active' : ''}}">{{ $breadcrumb['title'] }}</li>
         @endif
     @endforeach
 </ul>
