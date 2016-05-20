@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="organization">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 @include('layouts.breadcrumb', [
@@ -131,8 +131,13 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button class="btn btn-warning text-center"><i class="fa fa-floppy-o"></i>&nbsp; Save</button>
+                <button v-show="! loading" class="btn btn-warning text-center" v-on:click="save"><i class="fa fa-floppy-o"></i>&nbsp; Save</button>
+                <button v-show="loading" class="btn btn-warning text-center" disabled><i class="fa fa-spinner fa-spin"></i>&nbsp; Saving</button>
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="/js/organization.js"></script>
+@endpush
