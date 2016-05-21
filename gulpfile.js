@@ -14,9 +14,7 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
 
     var nodeModule = 'node_modules/';
-    var js  = 'resources/assets/js/';
+    var js  = 'public/js/';
     mix.copy(nodeModule + 'vue/dist/vue.min.js', js)
         .copy(nodeModule + 'vue-resource/dist/vue-resource.min.js', js);
-
-    mix.scriptsIn(js, 'public/js/vendor.js');
 });

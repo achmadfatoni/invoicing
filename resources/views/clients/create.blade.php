@@ -18,6 +18,8 @@
                 ])
             </div>
         </div>
+        <form method="post" action="{{ route('clients.store') }}" @submit.prevent="submitForm">
+        {{ csrf_field() }}
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel-primary">
@@ -27,25 +29,29 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="organization_name"/>
+                                    <input type="text" class="form-control" name="organization_name" v-model="formInputs.organization_name"/>
+                                    <span v-if="formErrors['organization_name']" class="error">@{{ formErrors['organization_name'] }}</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">ID Number</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="organization_id_number"/>
+                                    <input type="text" class="form-control" name="organization_id_number" v-model="formInputs.organization_id_number"/>
+                                    <span v-if="formErrors['organization_id_number']" class="error">@{{ formErrors['organization_id_number'] }}</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Website</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="organization_website"/>
+                                    <span v-if="formErrors['organization_website']" class="error">@{{ formErrors['organization_website'] }}</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Phone</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="organization_phone"/>
+                                    <span v-if="formErrors['organization_phone']" class="error">@{{ formErrors['organization_phone'] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -131,13 +137,17 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button v-show="! loading" class="btn btn-warning text-center" v-on:click="save"><i class="fa fa-floppy-o"></i>&nbsp; Save</button>
+                <button v-show="! loading" class="btn btn-warning text-center"><i class="fa fa-floppy-o"></i>&nbsp; Save</button>
                 <button v-show="loading" class="btn btn-warning text-center" disabled><i class="fa fa-spinner fa-spin"></i>&nbsp; Saving</button>
             </div>
         </div>
+        </form>
+        <pre>@{{ $data | json }}</pre>
     </div>
 @endsection
 
 @push('scripts')
+    <script src="/js/vue.min.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
     <script src="/js/organization.js"></script>
 @endpush
