@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Models\Client;
+use Illuminate\Support\Facades\Request;
 
 class ClientsController extends Controller
 {
     public function index()
     {
+        if (Request::ajax()) {
+            return Client::all();
+        }
+
         return view('clients.index');
     }
 
@@ -18,7 +21,8 @@ class ClientsController extends Controller
         return view('clients.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'organization_name' => 'required',
             'organization_id_number' => 'required',
